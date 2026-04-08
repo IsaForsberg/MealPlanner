@@ -174,7 +174,6 @@
     border-bottom: 2px solid var(--border);
     cursor: pointer;
     transition: background 0.15s;
-    position: sticky;
     top: 64px;
     z-index: 10;
   }
@@ -447,12 +446,12 @@
     margin-bottom: 2rem;
   }
 
-  .cat-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
+ .cat-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: nowrap; /* ← viktigt */
+}
 
   .cat-tab {
     background: none;
@@ -704,26 +703,87 @@
   ::-webkit-scrollbar-track { background: var(--cream); }
   ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 3px; }
 
-  /* Responsive */
-  @media (max-width: 700px) {
-    .week-grid { grid-template-columns: repeat(7, minmax(100px, 1fr)); overflow-x: auto; }
-    .meal-chip { font-size: 0.65rem; }
+
+ /* ----------------------------- */
+/* MOBILANPASSNING (max 700px)   */
+/* ----------------------------- */
+@media (max-width: 700px) {
+
+  /* Veckovy – gör dagarna scrollbara */
+  .week-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 85%;
+    overflow-x: auto;
+    gap: 12px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
   }
 
-  .fade-in {
-    animation: fadeIn 0.2s ease;
+  .week-grid > div {
+    scroll-snap-align: start;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* Mindre text på meal-chips */
+  .meal-chip {
+    font-size: 0.7rem;
+    padding: 4px 6px;
   }
 
-  .empty-state {
-    text-align: center;
-    padding: 3rem;
-    color: var(--text-light);
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
+  /* Header kompakt */
+  header {
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    height: auto; /* viktigt */
   }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .header-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-nav {
+    flex: 1;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  /* Kategoriflikar – horisontell scroll */
+  .cat-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .cat-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cat-tab {
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  /* Recept-grid – två kolumner */
+  .recipe-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* Extra liten mobil (max 400px) */
+@media (max-width: 400px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
