@@ -1,3 +1,3 @@
-###Meal Planner App###
+### Meal Planner App ###
 
 https://isaforsberg.github.io/MealPlanner/
