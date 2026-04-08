@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Måltidsplaneraren</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Måltids<span>planering</span></div>
+  <div class="header-nav">
+    <button class="btn-nav active" id="nav-week" onclick="showView('week')">Vecka</button>
+    <button class="btn-nav" id="nav-bank" onclick="showView('bank')">Maträtter</button>
+  </div>
+</header>
+
+<!-- WEEK VIEW -->
+<div id="week-view">
+  <div class="week-header">
+    <div class="week-title">
+      <span id="week-label">Vecka 00</span>
+      <small id="week-range">— —</small>
+    </div>
+    <div class="week-nav-btns">
+      <button class="btn-week" onclick="changeWeek(-1)">‹</button>
+      <button class="btn-today" onclick="goToCurrentWeek()">Idag</button>
+      <button class="btn-week" onclick="changeWeek(1)">›</button>
+    </div>
+  </div>
+
+  <div class="week-grid" id="week-grid"></div>
+</div>
+
+<!-- DAY VIEW -->
+<div id="day-view">
+  <div class="day-view-header">
+    <button class="btn-back" onclick="showView('week')">‹</button>
+    <div class="day-view-title">
+      <small id="dv-weekday"></small>
+      <span id="dv-date"></span>
+    </div>
+  </div>
+  <div id="day-view-meals"></div>
+</div>
+
+<!-- RECIPE BANK -->
+<div id="recipe-bank">
+  <div class="section-title">Maträtter</div>
+  <div class="section-subtitle">Grundbas + dina egna tillägg</div>
+
+  <div class="cat-tabs">
+    <button class="cat-tab active" data-cat="alla" onclick="filterCat('alla', this)">Alla</button>
+    <button class="cat-tab" data-cat="frukost" onclick="filterCat('frukost', this)">Frukost</button>
+    <button class="cat-tab" data-cat="lunch" onclick="filterCat('lunch', this)">Lunch</button>
+    <button class="cat-tab" data-cat="middag" onclick="filterCat('middag', this)">Middag</button>
+    <button class="cat-tab" data-cat="snack" onclick="filterCat('snack', this)">Snack</button>
+    <button class="cat-tab" data-cat="smoothie" onclick="filterCat('smoothie', this)">Smoothie</button>
+  </div>
+
+  <div class="recipe-grid" id="recipe-grid"></div>
+
+  <div class="add-recipe-form">
+    <h3>Lägg till ny maträtt</h3>
+    <div class="form-row">
+      <div class="form-group" style="flex:2">
+        <label>Namn</label>
+        <input type="text" id="new-recipe-name" placeholder="t.ex. Lax med quinoa">
+      </div>
+      <div class="form-group">
+        <label>Kategori</label>
+        <select id="new-recipe-cat">
+          <option value="frukost">Frukost</option>
+          <option value="lunch">Lunch</option>
+          <option value="middag" selected>Middag</option>
+          <option value="snack">Snack</option>
+          <option value="smoothie">Smoothie</option>
+        </select>
+      </div>
+      <button class="btn-add" onclick="addCustomRecipe()">Lägg till</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Välj maträtt -->
+<div class="modal-overlay" id="pick-modal">
+  <div class="modal">
+    <h3 id="modal-title">Välj maträtt</h3>
+    <p class="modal-sub" id="modal-sub"></p>
+    <ul class="modal-list" id="modal-list"></ul>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Avbryt</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
