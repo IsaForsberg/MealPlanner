@@ -380,3 +380,11 @@ function deleteCustomRecipe(id) {
 // INIT
 // ──────────────────────────────────────────────
 renderWeek();
+
+// --- PWA: Registrera service worker ---
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .catch(err => console.log('Service worker registration failed:', err));
+  });
+}
