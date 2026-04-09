@@ -779,6 +779,13 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
+  .day-col-header {
+  position: sticky;
+  top: 64px; /* Safari behöver ett exakt värde */
+  z-index: 10;
+  background: var(--warm-white); /* Safari kräver bakgrund */
+}
+
 }
 
 /* Extra liten mobil (max 400px) */
