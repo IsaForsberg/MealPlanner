@@ -22,7 +22,7 @@
     <button class="btn-nav" id="nav-bank" onclick="showView('bank')">Maträtter</button>
   </div>
 </header>
-
+ 
 <!-- WEEK VIEW -->
 <div id="week-view">
   <div class="week-header">
@@ -36,10 +36,10 @@
       <button class="btn-week" onclick="changeWeek(1)">›</button>
     </div>
   </div>
-
+ 
   <div class="week-grid" id="week-grid"></div>
 </div>
-
+ 
 <!-- DAY VIEW -->
 <div id="day-view">
   <div class="day-view-header">
@@ -51,12 +51,12 @@
   </div>
   <div id="day-view-meals"></div>
 </div>
-
+ 
 <!-- RECIPE BANK -->
 <div id="recipe-bank">
   <div class="section-title">Maträtter</div>
   <div class="section-subtitle">Grundbas + dina egna tillägg</div>
-
+ 
   <div class="cat-tabs">
     <button class="cat-tab active" data-cat="alla" onclick="filterCat('alla', this)">Alla</button>
     <button class="cat-tab" data-cat="frukost" onclick="filterCat('frukost', this)">Frukost</button>
@@ -65,9 +65,9 @@
     <button class="cat-tab" data-cat="snack" onclick="filterCat('snack', this)">Snack</button>
     <button class="cat-tab" data-cat="smoothie" onclick="filterCat('smoothie', this)">Smoothie</button>
   </div>
-
+ 
   <div class="recipe-grid" id="recipe-grid"></div>
-
+ 
   <div class="add-recipe-form">
     <h3>Lägg till ny maträtt</h3>
     <div class="form-row">
@@ -85,11 +85,15 @@
           <option value="smoothie">Smoothie</option>
         </select>
       </div>
+      <div class="form-group" style="max-width:90px">
+        <label>Kcal</label>
+        <input type="number" id="new-recipe-kcal" placeholder="t.ex. 700" min="0" max="9999">
+      </div>
       <button class="btn-add" onclick="addCustomRecipe()">Lägg till</button>
     </div>
   </div>
 </div>
-
+ 
 <!-- MODAL: Välj maträtt -->
 <div class="modal-overlay" id="pick-modal">
   <div class="modal">
@@ -103,5 +107,6 @@
 </div>
 
 <script src="script.js"></script>
+<script src="service-worker.js"></script>
 </body>
 </html>
